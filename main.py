@@ -61,7 +61,26 @@ def right(x):
     time.sleep(x)
     gpio.cleanup()
 
-#Function takes a single key (w,a,s,d) and funnels that key into its corresponding
+#Function that turns on the vacuum with the key press of r, able to turn on and off
+def vacuum(x, y):
+    #if y is 0, turn on vacuum, if y is 1 turn off vacuum
+    if (y == 0):
+        gpio.output(1, True)
+        y = 1
+    else:
+        gpio.output(1, False)
+        y = 0
+    time.sleep(x)
+    gpio.cleanup()
+    #this return updates wether or not vacuum is on
+    return y
+
+#####################################################################################
+
+#keeps track of wether the vacuum should be on or off (GLOBAL VARIABLE)
+vacuum = 0
+
+#Function takes a single key (w,a,s,d, r) and funnels that key into its corresponding
 #movement function
 def input(event):
     initial()
@@ -77,6 +96,8 @@ def input(event):
         left(sleep)
     elif key.lower() == 'd':
         right(sleep)
+    elif key.lower() == 'r':
+        vacuum = vacuum(sleep, track)
 
 
 #puts the console in a loop, and takes key presses and sends them to the input functions
