@@ -63,12 +63,12 @@ def right(x):
 
 #Function that turns on the vacuum with the key press of r, able to turn on and off
 def vacuum(x, y):
-    #if y is 0, turn on vacuum, if y is 1 turn off vacuum
+    #if y is 0, turn on vacuum, if y is 2 turn off vacuum
     if (y == 0):
-        gpio.output(1, True)
+        gpio.output(2, True)
         y = 1
     else:
-        gpio.output(1, False)
+        gpio.output(2, False)
         y = 0
     time.sleep(x)
     gpio.cleanup()
