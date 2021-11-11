@@ -66,12 +66,17 @@ def vacuum(x, y):
     #if y is 0, turn on vacuum, if y is 2 turn off vacuum
     if (y == 0):
         gpio.output(2, True)
+        gpio.output(12, True)
+
         y = 1
     else:
         gpio.output(2, False)
+        gpio.output(12, False)
         y = 0
     time.sleep(x)
     gpio.cleanup()
+    
+    
     #this return updates wether or not vacuum is on
     return y
 
